@@ -1,13 +1,17 @@
+import * as React from "react";
 import Header from "../components/Header";
+import Autoplay from "embla-carousel-autoplay";
 import {
   Carousel,
   CarouselContent,
   CarouselItem,
-  CarouselNext,
-  CarouselPrevious,
 } from "@/components/ui/carousel";
 
 export default function Index() {
+  const plugin = React.useRef(
+    Autoplay({ delay: 2000, stopOnInteraction: false }),
+  );
+
   const stack = [
     { id: 1, name: "React", logo: "/react.svg" },
     { id: 2, name: "Javascript", logo: "/javascript.svg" },
@@ -44,27 +48,36 @@ export default function Index() {
           </div>
         </div>
 
-        <div className="w-full max-w-xs md:max-w-xl">
+        <div className="w-full max-w-xs md:max-w-2xl lg:max-w-4xl">
           <Carousel
             opts={{
               align: "start",
               loop: true,
             }}
+            plugins={[plugin.current]}
+            onMouseEnter={() => plugin.current.stop()}
+            onMouseLeave={() => plugin.current.play()}
             className="w-full"
           >
             <CarouselContent>
               {stack.map((tech) => (
-                <CarouselItem key={tech.id} className="md:basis-1/2 lg:basis-1/3">
-                  <div className="p-1">
-                    <div className="flex aspect-video items-center justify-center rounded-xl p-4">
-                      <img src={tech.logo} alt={tech .name} className="h-full w-full object-contain" />
+                <CarouselItem
+                  key={tech.id}
+                  className="basis-1/3 md:basis-1/4 lg:basis-1/6"
+                >
+                  <div className="p-2">
+                    <div className="flex aspect-square items-center justify-center rounded-xl p-4 transition-transform hover:scale-110">
+                      <img
+                        src={tech.logo}
+                        alt={tech.name}
+                        className="h-full w-full object-contain grayscale hover:grayscale-0 transition-all duration-300"
+                        title={tech.name}
+                      />
                     </div>
                   </div>
                 </CarouselItem>
               ))}
             </CarouselContent>
-            <CarouselPrevious className="text-white border-gray-600 hover:bg-gray-700" />
-            <CarouselNext className="text-white border-gray-600 hover:bg-gray-700" />
           </Carousel>
         </div>
       </div>

@@ -14,22 +14,46 @@ export default function Index() {
   );
 
   const stack = [
-    { id: 1, name: "React", logo: "/react.svg" },
-    { id: 2, name: "Javascript", logo: "/javascript.svg" },
-    { id: 3, name: "Python", logo: "/python.svg" },
-    { id: 4, name: "Django", logo: "/django.svg" },
-    { id: 5, name: "Flask", logo: "/flask.svg" },
-    { id: 6, name: "TypeScript", logo: "/typescript.svg" },
-    { id: 7, name: "Node.js", logo: "/nodedotjs.svg" },
-    { id: 8, name: "Express", logo: "/express.svg" },
-    { id: 9, name: "Docker", logo: "/docker.svg" },
-    { id: 10, name: "Github", logo: "/github.svg" },
-    { id: 11, name: "Tailwind CSS", logo: "/tailwindcss.svg" },
-    { id: 12, name: "HTML", logo: "/html5.svg" },
-    { id: 13, name: "CSS", logo: "/css.svg" },
-    { id: 14, name: "Linux", logo: "/linux.svg" },
-    { id: 15, name: "PostgreSQL", logo: "/postgresql.svg" },
-    { id: 16, name: "MySql", logo: "/mysql.svg" },
+    { id: 1, name: "React", logo: "/icons/react.svg" },
+    { id: 2, name: "Javascript", logo: "/icons/javascript.svg" },
+    { id: 3, name: "Python", logo: "/icons/python.svg" },
+    { id: 4, name: "Django", logo: "/icons/django.svg" },
+    { id: 5, name: "Flask", logo: "/icons/flask.svg" },
+    { id: 6, name: "TypeScript", logo: "/icons/typescript.svg" },
+    { id: 7, name: "Node.js", logo: "/icons/nodedotjs.svg" },
+    { id: 8, name: "Express", logo: "/icons/express.svg" },
+    { id: 9, name: "Docker", logo: "/icons/docker.svg" },
+    { id: 10, name: "Github", logo: "/icons/github.svg" },
+    { id: 11, name: "Tailwind CSS", logo: "/icons/tailwindcss.svg" },
+    { id: 12, name: "HTML", logo: "/icons/html5.svg" },
+    { id: 13, name: "CSS", logo: "/icons/css.svg" },
+    { id: 14, name: "Linux", logo: "/icons/linux.svg" },
+    { id: 15, name: "PostgreSQL", logo: "/icons/postgresql.svg" },
+    { id: 16, name: "MySql", logo: "/icons/mysql.svg" },
+  ];
+
+  const projects = [
+    {
+      id: 1,
+      title: "Tapiocaria - Frontend",
+      description: "Jogo interativo que ensina conceitos matemáticos (Frontend).",
+      image: "projects/tapiocaria-front.png",
+      link: "#"
+    },
+    {
+      id: 2,
+      title: "Tapiocaria - Backend",
+      description: "Jogo interativo que ensina conceitos matemáticos (Backend).",
+      image: "projects/tapiocaria-back.png",
+      link: "#"
+    },
+    {
+      id: 3,
+      title: "Portfolio Minimalista",
+      description: "Design clean focado em performance.",
+      image: "projects/portfolio-minimalista.png",
+      link: "#"
+    },
   ];
 
   const containerVariants = {
@@ -120,14 +144,36 @@ export default function Index() {
           </motion.h2>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {[1, 2, 3].map((i) => (
+            {projects.map((project) => (
               <motion.div
-                key={i}
+                key={project.id}
                 variants={itemVariants}
                 whileHover={{ y: -10 }}
-                className="h-72 bg-gray-900 border border-gray-800 rounded-xl flex items-center justify-center text-gray-500 italic shadow-xl"
+                className="group relative h-[450px] bg-gray-900 border border-gray-800 rounded-xl overflow-hidden shadow-xl cursor-pointer"
               >
-                Project Card {i}
+                {/* Container da Imagem Ajustado */}
+                <div className="h-3/5 w-full overflow-hidden bg-gray-800/50 flex items-center justify-center p-4">
+                  <img
+                    src={project.image}
+                    alt={project.title}
+                    // MUDANÇA AQUI: object-contain garante que a imagem apareça inteira
+                    className="max-w-full max-h-full object-contain transition-transform duration-500 group-hover:scale-105 opacity-90 group-hover:opacity-100"
+                    onError={(e) => (e.currentTarget.src = "https://via.placeholder.com/400x250/111827/4B5563?text=Project+Preview")}
+                  />
+                </div>
+
+                <div className="p-6 flex flex-col gap-2 h-2/5">
+                  <h3 className="text-white text-xl font-bold group-hover:text-blue-400 transition-colors">
+                    {project.title}
+                  </h3>
+                  <p className="text-gray-400 text-sm leading-relaxed line-clamp-3">
+                    {project.description}
+                  </p>
+
+                  <div className="mt-auto pt-4 text-blue-500 text-xs font-black tracking-widest uppercase opacity-0 group-hover:opacity-100 transition-opacity">
+                    Ver projeto _
+                  </div>
+                </div>
               </motion.div>
             ))}
           </div>

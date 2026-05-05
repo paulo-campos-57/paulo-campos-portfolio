@@ -7,6 +7,7 @@ import {
   CarouselContent,
   CarouselItem,
 } from "@/components/ui/carousel";
+import Footer from "@/components/Footer";
 
 export default function Index() {
   const plugin = React.useRef(
@@ -36,23 +37,25 @@ export default function Index() {
     {
       id: 1,
       title: "Tapiocaria - Frontend",
-      description: "Jogo interativo que ensina conceitos matemáticos (Frontend).",
+      description:
+        "Jogo interativo que ensina conceitos matemáticos (Frontend).",
       image: "projects/tapiocaria-front.png",
-      link: "#"
+      link: "#",
     },
     {
       id: 2,
       title: "Tapiocaria - Backend",
-      description: "Jogo interativo que ensina conceitos matemáticos (Backend).",
+      description:
+        "Jogo interativo que ensina conceitos matemáticos (Backend).",
       image: "projects/tapiocaria-back.png",
-      link: "#"
+      link: "#",
     },
     {
       id: 3,
       title: "Portfolio Minimalista",
       description: "Design clean focado em performance.",
       image: "projects/portfolio-minimalista.png",
-      link: "#"
+      link: "#",
     },
   ];
 
@@ -60,21 +63,24 @@ export default function Index() {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
-      transition: { staggerChildren: 0.2 }
-    }
+      transition: { staggerChildren: 0.2 },
+    },
   };
 
   const itemVariants = {
     hidden: { y: 20, opacity: 0 },
-    visible: { y: 0, opacity: 1 }
+    visible: { y: 0, opacity: 1 },
   };
 
   return (
     <div className="min-h-screen w-full bg-gray-800 flex flex-col">
       <Header />
 
-      {/* --- SECTION HOME --- */}
-      <section id="home" className="min-h-screen flex flex-col items-center justify-center gap-12 p-4 relative">
+      {/*Section Home*/}
+      <section
+        id="home"
+        className="min-h-screen flex flex-col items-center justify-center gap-12 p-4 relative"
+      >
         <motion.div
           initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
@@ -107,7 +113,10 @@ export default function Index() {
           >
             <CarouselContent>
               {stack.map((tech) => (
-                <CarouselItem key={tech.id} className="basis-1/3 md:basis-1/4 lg:basis-1/6">
+                <CarouselItem
+                  key={tech.id}
+                  className="basis-1/3 md:basis-1/4 lg:basis-1/6"
+                >
                   <div className="p-2">
                     <div className="flex aspect-square items-center justify-center rounded-xl p-4 transition-transform hover:scale-110">
                       <img
@@ -127,8 +136,11 @@ export default function Index() {
         <div className="absolute bottom-0 left-0 w-full h-48 bg-gradient-to-t from-gray-950 via-gray-950/50 to-transparent pointer-events-none" />
       </section>
 
-      {/* --- SECTION PROJECTS --- */}
-      <section id="projects" className="min-h-screen bg-gray-950 p-8 flex flex-col items-center">
+      {/*Section Projects*/}
+      <section
+        id="projects"
+        className="min-h-screen bg-gray-950 p-8 flex flex-col items-center relative"
+      >
         <motion.div
           initial="hidden"
           whileInView="visible"
@@ -151,14 +163,11 @@ export default function Index() {
                 whileHover={{ y: -10 }}
                 className="group relative h-[450px] bg-gray-900 border border-gray-800 rounded-xl overflow-hidden shadow-xl cursor-pointer"
               >
-                {/* Container da Imagem Ajustado */}
                 <div className="h-3/5 w-full overflow-hidden bg-gray-800/50 flex items-center justify-center p-4">
                   <img
                     src={project.image}
                     alt={project.title}
-                    // MUDANÇA AQUI: object-contain garante que a imagem apareça inteira
                     className="max-w-full max-h-full object-contain transition-transform duration-500 group-hover:scale-105 opacity-90 group-hover:opacity-100"
-                    onError={(e) => (e.currentTarget.src = "https://via.placeholder.com/400x250/111827/4B5563?text=Project+Preview")}
                   />
                 </div>
 
@@ -179,6 +188,139 @@ export default function Index() {
           </div>
         </motion.div>
       </section>
+
+      {/*Section About*/}
+      <section
+        id="about"
+        className="min-h-screen bg-gray-800 flex flex-col items-center justify-center p-8 relative"
+      >
+        <div className="absolute top-0 left-0 w-full h-48 bg-gradient-to-b from-gray-950 via-gray-950/20 to-transparent pointer-events-none" />
+
+        <motion.div
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.3 }}
+          variants={containerVariants}
+          className="max-w-5xl w-full z-10"
+        >
+          <motion.h2
+            variants={itemVariants}
+            className="text-white text-3xl font-bold mb-12 border-l-4 border-blue-500 pl-4"
+          >
+            ./about
+          </motion.h2>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-start">
+            <motion.div
+              variants={itemVariants}
+              className="relative group max-w-sm mx-auto md:mx-0"
+            >
+              <div className="absolute -inset-1 bg-gradient-to-r from-blue-500 to-purple-600 rounded-2xl blur opacity-25 group-hover:opacity-50 transition duration-1000"></div>
+              <div className="relative bg-gray-900 rounded-2xl overflow-hidden aspect-square">
+                <img
+                  src="/profile/profile.jpeg"
+                  alt="Paulo Campos"
+                  className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-500"
+                />
+              </div>
+            </motion.div>
+
+            <motion.div variants={itemVariants} className="flex flex-col gap-6">
+              <p className="text-gray-300 text-lg leading-relaxed">
+                Hello! I'm{" "}
+                <span className="text-white font-bold">Paulo Campos</span>, a
+                fullstack developer focused on building robust and scalable
+                solutions. My journey is driven by the curiosity to understand
+                how things work under the hood.
+              </p>
+
+              <p className="text-gray-400 leading-relaxed">
+                With experience in the{" "}
+                <span className="text-[#61DAFB]">React</span>,
+                <span className="text-[#3776AB]"> Python</span> and
+                <span className="text-[#339933]"> Node.js</span> ecosystems, I
+                always strive for a balance between clean code and an impeccable
+                user experience. When I'm not coding, I'm likely exploring new
+                technologies or improving my Linux setup.
+              </p>
+
+              <div className="flex flex-wrap gap-8 mt-4">
+                <div className="flex flex-col gap-1">
+                  <span className="text-white font-bold text-2xl tracking-tight leading-none">
+                    Development <br /> Intern
+                  </span>
+                  <span className="text-gray-500 text-xs uppercase tracking-[0.2em] font-medium">
+                    Magnum Tires
+                  </span>
+                </div>
+
+                <div className="hidden md:block w-[1px] bg-gray-700 self-stretch"></div>
+
+                <div className="flex flex-col gap-1">
+                  <span className="text-white font-bold text-2xl tracking-tight leading-none">
+                    Computer Science <br /> Student
+                  </span>
+                  <span className="text-gray-500 text-xs uppercase tracking-[0.2em] font-medium">
+                    CESAR School
+                  </span>
+                </div>
+              </div>
+
+              <div className="mt-8 pt-8 border-t border-gray-700/50">
+                <span className="text-gray-500 text-xs uppercase tracking-[0.2em] font-medium mb-4 block">
+                  Find me at:
+                </span>
+                <div className="flex flex-wrap gap-6">
+                  <a
+                    href="https://github.com/paulo-campos-57"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-gray-400 hover:text-white transition-colors flex items-center gap-1 group text-sm font-medium"
+                  >
+                    Github{" "}
+                    <span className="text-blue-500 opacity-0 group-hover:opacity-100 transition-opacity">
+                      _
+                    </span>
+                  </a>
+                  <a
+                    href="https://www.linkedin.com/in/paulo-m-campos/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-gray-400 hover:text-[#0077B5] transition-colors flex items-center gap-1 group text-sm font-medium"
+                  >
+                    Linkedin{" "}
+                    <span className="text-blue-500 opacity-0 group-hover:opacity-100 transition-opacity">
+                      _
+                    </span>
+                  </a>
+                  <a
+                    href="https://wa.me/5581999511478?text=Olá%20Paulo,%20vi%20seu%20portfólio%20e%20gostaria%20de%20conversar%20sobre%20um%20projeto!"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-gray-400 hover:text-[#25D366] transition-colors flex items-center gap-1 group text-sm font-medium"
+                  >
+                    WhatsApp{" "}
+                    <span className="text-blue-500 opacity-0 group-hover:opacity-100 transition-opacity">
+                      _
+                    </span>
+                  </a>
+                  <a
+                    href="mailto:paulo.m.campos6601@gmail.com?subject=Contato%20via%20Portfolio&body=Olá%20Paulo%2C%20vi%20seu%20portfólio%20e%20gostaria%20de%20mais%20informações."
+                    className="text-gray-400 hover:text-white transition-colors flex items-center gap-1 group text-sm font-medium"
+                  >
+                    Gmail{" "}
+                    <span className="text-blue-500 opacity-0 group-hover:opacity-100 transition-opacity">
+                      _
+                    </span>
+                  </a>
+                </div>
+              </div>
+            </motion.div>
+          </div>
+        </motion.div>
+      </section>
+
+      <Footer />
     </div>
   );
 }

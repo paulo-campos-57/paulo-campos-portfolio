@@ -19,7 +19,11 @@ export default function Header() {
 
       <nav className="hidden md:flex items-center gap-10 text-xl lg:text-2xl font-bold">
         {navItems.map((item) => (
-          <a key={item.name} href={item.href} className="relative group transition duration-300">
+          <a
+            key={item.name}
+            href={item.href}
+            className="relative group transition duration-300"
+          >
             <span className="hover:text-gray-300 transition duration-300">
               {item.name}
             </span>

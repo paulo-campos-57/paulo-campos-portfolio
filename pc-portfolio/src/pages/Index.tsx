@@ -216,12 +216,24 @@ export default function Index() {
               className="relative group max-w-sm mx-auto md:mx-0"
             >
               <div className="absolute -inset-1 bg-gradient-to-r from-blue-500 to-purple-600 rounded-2xl blur opacity-25 group-hover:opacity-50 transition duration-1000"></div>
-              <div className="relative bg-gray-900 rounded-2xl overflow-hidden aspect-square">
-                <img
-                  src="/profile/profile.jpeg"
-                  alt="Paulo Campos"
-                  className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-500"
-                />
+
+              <div className="relative flex flex-col items-center">
+                <div className="bg-gray-900 rounded-t-2xl overflow-hidden aspect-square w-full">
+                  <img
+                    src="/profile/profile.jpeg"
+                    alt="Paulo Campos"
+                    className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-500"
+                  />
+                </div>
+
+                <a
+                  href="/resume.pdf"
+                  download
+                  className="w-full bg-gray-900/80 hover:bg-gray-700 text-white py-3 rounded-b-2xl border-t border-gray-800 transition-colors flex items-center justify-center gap-2 text-sm font-semibold group/btn"
+                >
+                  Download my resume!
+                  <span className="text-blue-500 group-hover/btn:translate-y-1 transition-transform tracking-widest font-black">↓</span>
+                </a>
               </div>
             </motion.div>
 

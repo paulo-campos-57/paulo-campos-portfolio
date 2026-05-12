@@ -88,7 +88,12 @@ export default function Index() {
           transition={{ duration: 0.5 }}
           className="flex flex-col items-center justify-center gap-6"
         >
-          <img src="/logo.png" alt="Logo" className="h-20 w-auto" />
+          <div className="text-white text-6xl text-center leading-tight font-bold">
+            Turning <span className="relative inline-block px-2 ml-1">
+              <span className="relative z-10 text-black">code</span>
+              <span className="absolute inset-0 bg-blue-500 -skew-x-6"></span>
+            </span> into reality
+          </div>
           <div className="flex flex-col items-center justify-center gap-1">
             <h1 className="text-white text-4xl text-center leading-tight font-bold">
               Paulo Campos

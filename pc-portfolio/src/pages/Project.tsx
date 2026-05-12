@@ -1,4 +1,4 @@
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams, useNavigate, Link } from "react-router-dom";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { projects } from "../data/projects";
@@ -11,77 +11,108 @@ export default function Project() {
 
     if (!project) {
         return (
-            <div className="min-h-screen bg-gray-800 text-white flex items-center justify-center">
-                <p>Project not found.</p>
-                <div 
-                    className="text-blue-500 ml-2 underline" onClick={() => navigate("/")}>
-                    Go back
-                </div>
+            <div className="min-h-screen bg-gray-950 text-white flex flex-col items-center justify-center font-mono">
+                <p className="text-xl">./project_not_found</p>
+                <button
+                    className="mt-4 text-blue-500 hover:underline"
+                    onClick={() => navigate("/")}
+                >
+                    [ return_home ]
+                </button>
             </div>
         );
     }
 
     return (
-        <div className="min-h-screen w-full bg-gray-950 flex flex-col">
+        <div className="min-h-screen w-full bg-black flex flex-col font-sans">
             <Header />
 
-            <main className="flex-1 max-w-5xl mx-auto w-full p-8 pt-24">
-                {/* Título */}
-                <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-4">
-                    <div>
-                        <h1 className="text-5xl font-bold text-white mb-2 italic">
-                            ./{project.title}
-                        </h1>
-                        <p className="text-xl text-blue-500 font-mono">
-                            at {project.enterprise || "Personal Project"}
-                        </p>
-                    </div>
-                    <div 
-                        className="text-gray-500 hover:text-white transition-colors cursor-pointer"
+            <div className="flex-1 max-w-6xl mx-auto w-full px-6 pt-32 pb-12">
+                <div className="flex flex-col md:flex-row items-baseline gap-4 mb-8">
+                    <h1 className="text-white text-4xl md:text-5xl font-bold tracking-tight">
+                        ./{project.title}
+                    </h1>
+                    <span className="text-gray-400 text-xl font-mono">
+                        ./at {project.enterprise || "Personal"}
+                    </span>
+                    <button
+                        className="mt-4 text-blue-500 hover:underline"
                         onClick={() => navigate("/")}
                     >
-                        [ voltar_ ]
+                        [ return_home ]
+                    </button>
+                </div>
+
+                {/* Grid de Imagens */}
+                <div className="grid grid-cols-4 grid-rows-2 gap-4 h-[300px] md:h-[500px] mb-12">
+                    <div className="col-span-1 bg-gray-800 rounded-2xl overflow-hidden hidden md:block">
+                        <img src={project.gallery?.[0] || project.image} className="w-full h-full object-cover opacity-80" />
+                    </div>
+                    <div className="col-span-4 md:col-span-2 row-span-2 bg-gray-700 rounded-3xl overflow-hidden border-4 border-gray-600">
+                        <img src={project.image} className="w-full h-full object-cover" />
+                    </div>
+                    <div className="col-span-1 bg-gray-800 rounded-2xl overflow-hidden hidden md:block">
+                        <img src={project.gallery?.[1] || project.image} className="w-full h-full object-cover opacity-80" />
+                    </div>
+                    <div className="col-span-1 bg-gray-800 rounded-2xl overflow-hidden hidden md:block">
+                        <img src={project.gallery?.[2] || project.image} className="w-full h-full object-cover opacity-80" />
+                    </div>
+                    <div className="col-span-1 bg-gray-800 rounded-2xl overflow-hidden hidden md:block">
+                        <img src={project.gallery?.[3] || project.image} className="w-full h-full object-cover opacity-80" />
                     </div>
                 </div>
 
-                <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
-                    {/* Imagem e stack */}
-                    <div className="lg:col-span-2">
-                        <div className="rounded-2xl overflow-hidden border border-gray-800 bg-gray-900">
-                            <img
-                                src={project.image}
-                                alt={project.title}
-                                className="w-full h-auto object-cover"
-                            />
-                        </div>
+                <div className="flex flex-col md:flex-row justify-between gap-12 mb-12">
+                    <div className="flex-1">
+                        <p className="text-gray-300 text-lg leading-relaxed text-justify">
+                            {project.fullDescription}
+                        </p>
                     </div>
 
-                    {/* Detalhes Laterais */}
-                    <div className="flex flex-col gap-8">
-                        <div>
-                            <h3 className="text-gray-500 text-xs uppercase tracking-[0.2em] font-bold mb-4">
-                                Sobre o projeto
-                            </h3>
-                            <p className="text-gray-300 leading-relaxed">
-                                {project.description || project.description}
-                            </p>
+                    <div className="flex flex-col gap-2 min-w-[250px] font-mono">
+                        <div className="flex flex-col">
+                            <span className="text-white text-3xl font-bold italic">
+                                . /role: <span className="font-normal not-italic">{project.role || "Developer"}</span>
+                            </span>
                         </div>
 
-                        <div>
-                            <h3 className="text-gray-500 text-xs uppercase tracking-[0.2em] font-bold mb-4">
-                                Tecnologias
-                            </h3>
-                            <div className="flex flex-wrap gap-2">
-                                {project.stack?.map((tech) => (
-                                    <span key={tech} className="px-3 py-1 bg-gray-900 border border-gray-800 text-blue-400 text-xs rounded-full">
-                                        {tech}
-                                    </span>
-                                ))}
+                        <div className="flex items-center justify-between group">
+                            <div className="flex flex-col">
+                                <span className="text-white text-3xl font-bold italic">
+                                    {project.commits || "0"} commits
+                                </span>
+                                <span className="text-gray-400 text-xl font-mono">
+                                    ./begin_date: {project.date || "2024"}
+                                </span>
                             </div>
+
+                            <Link to={project.githubLink} target="_blank" rel="noopener noreferrer" className="w-16 h-16 bg-white rounded-2xl flex items-center justify-center shadow-[0_0_15px_rgba(255,255,255,0.1)]">
+                                <img src="/icons/github.svg" alt="GitHub" className="w-8 h-8" />
+                            </Link>
                         </div>
                     </div>
                 </div>
-            </main>
+
+                {/* Barra de Stack Horizontal */}
+                <div className="w-full bg-gray-600/30 backdrop-blur-sm rounded-2xl p-3 flex flex-wrap justify-center items-center gap-4 border border-gray-700">
+                    {project.stack?.map((stackName, index) => {
+                        const iconName = stackName.toLowerCase().replace(".", "dot").replace(" ", "");
+
+                        return (
+                            <div key={index} className="bg-white rounded-lg px-4 py-1 flex items-center gap-3 shadow-md transition-transform hover:scale-105">
+                                <img
+                                    src={`/icons/${iconName}.svg`}
+                                    alt={stackName}
+                                    className="w-5 h-5 object-contain"
+                                />
+                                <span className="text-black font-bold text-sm uppercase tracking-wider">
+                                    {stackName}
+                                </span>
+                            </div>
+                        );
+                    })}
+                </div>
+            </div>
 
             <Footer />
         </div>

@@ -4,9 +4,15 @@ export const projects = [
         title: "Tapiocaria - Frontend",
         enterprise: "CESAR School",
         description:
-            "Jogo interativo que ensina conceitos matemáticos (Frontend).",
+            "Interactive game that teaches mathematical concepts (Frontend).",
+        fullDescription: "Frontend development of a gamified educational platform designed for mathematics instruction. The project focuses on accessibility and interactivity, featuring a classic game-inspired interface to facilitate the learning of logic and arithmetic concepts in an engaging way.",
         image: "/projects/tapiocaria-front.png",
-        stack: ["React", "TypeScript", "Tailwind CSS"],
+        gallery: ["/projects/tapiocaria-front.png", "/projects/tapiocaria-front.png", "/projects/tapiocaria-front.png", "/projects/tapiocaria-front.png"],
+        role: "Frontend Developer",
+        commits: "53",
+        date: "2024",
+        stack: ["React", "TypeScript", "TailwindCSS"],
+        githubLink: "https://github.com/paulo-campos-57/Projeto-TCC-FrontEnd/tree/development"
     },
     {
         id: 2,
@@ -15,7 +21,11 @@ export const projects = [
         description:
             "Jogo interativo que ensina conceitos matemáticos (Backend).",
         image: "/projects/tapiocaria-back.png",
+        role: "Backend Developer",
+        commits: "120",
+        date: "2024",
         stack: ["Python", "Flask", "PostgreSQL", "Docker"],
+        githubLink: "https://github.com/paulo-campos-57/Projeto-TCC-BackEnd/tree/development"
     },
     {
         id: 3,
@@ -23,6 +33,10 @@ export const projects = [
         enterprise: "CESAR School",
         description: "API de comunicação com o Gemini, focado e estudos de Cloud.",
         image: "/projects/cloudia-backend.png",
+        role: "Backend Developer",
+        commits: "85",
+        date: "2024",
         stack: ["NodeJs", "Docker", "express", "Github Actions"],
+        githubLink: "https://github.com/paulo-campos-57/CloudIA"
     },
 ];

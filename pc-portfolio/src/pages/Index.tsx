@@ -8,6 +8,7 @@ import {
   CarouselItem,
 } from "@/components/ui/carousel";
 import Footer from "@/components/Footer";
+import { Link } from "react-router-dom";
 
 export default function Index() {
   const plugin = React.useRef(
@@ -52,9 +53,9 @@ export default function Index() {
     },
     {
       id: 3,
-      title: "Portfolio Minimalista",
-      description: "Design clean focado em performance.",
-      image: "projects/portfolio-minimalista.png",
+      title: "CloudIA - Backend",
+      description: "API de comunicação com o Gemini, focado e estudos de Cloud.",
+      image: "projects/cloudia-back.png",
       link: "#",
     },
   ];
@@ -157,33 +158,35 @@ export default function Index() {
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {projects.map((project) => (
-              <motion.div
-                key={project.id}
-                variants={itemVariants}
-                whileHover={{ y: -10 }}
-                className="group relative h-[450px] bg-gray-900 border border-gray-800 rounded-xl overflow-hidden shadow-xl cursor-pointer"
-              >
-                <div className="h-3/5 w-full overflow-hidden bg-gray-800/50 flex items-center justify-center p-4">
-                  <img
-                    src={project.image}
-                    alt={project.title}
-                    className="max-w-full max-h-full object-contain transition-transform duration-500 group-hover:scale-105 opacity-90 group-hover:opacity-100"
-                  />
-                </div>
-
-                <div className="p-6 flex flex-col gap-2 h-2/5">
-                  <h3 className="text-white text-xl font-bold group-hover:text-blue-400 transition-colors">
-                    {project.title}
-                  </h3>
-                  <p className="text-gray-400 text-sm leading-relaxed line-clamp-3">
-                    {project.description}
-                  </p>
-
-                  <div className="mt-auto pt-4 text-blue-500 text-xs font-black tracking-widest uppercase opacity-0 group-hover:opacity-100 transition-opacity">
-                    Ver projeto _
+              <Link to={`/project/${project.id}`}>
+                <motion.div
+                  key={project.id}
+                  variants={itemVariants}
+                  whileHover={{ y: -10 }}
+                  className="group relative h-[450px] bg-gray-900 border border-gray-800 rounded-xl overflow-hidden shadow-xl cursor-pointer"
+                >
+                  <div className="h-3/5 w-full overflow-hidden bg-gray-800/50 flex items-center justify-center p-4">
+                    <img
+                      src={project.image}
+                      alt={project.title}
+                      className="max-w-full max-h-full object-contain transition-transform duration-500 group-hover:scale-105 opacity-90 group-hover:opacity-100"
+                    />
                   </div>
-                </div>
-              </motion.div>
+
+                  <div className="p-6 flex flex-col gap-2 h-2/5">
+                    <h3 className="text-white text-xl font-bold group-hover:text-blue-400 transition-colors">
+                      {project.title}
+                    </h3>
+                    <p className="text-gray-400 text-sm leading-relaxed line-clamp-3">
+                      {project.description}
+                    </p>
+
+                    <div className="mt-auto pt-4 text-blue-500 text-xs font-black tracking-widest uppercase opacity-0 group-hover:opacity-100 transition-opacity">
+                      Ver projeto _
+                    </div>
+                  </div>
+                </motion.div>
+              </Link>
             ))}
           </div>
         </motion.div>

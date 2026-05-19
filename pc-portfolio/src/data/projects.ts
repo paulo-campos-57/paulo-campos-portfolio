@@ -7,7 +7,7 @@ export const projects = [
             "Interactive game that teaches mathematical concepts (Frontend).",
         fullDescription: "Frontend development of a gamified educational platform designed for mathematics instruction. The project focuses on accessibility and interactivity, featuring a classic game-inspired interface to facilitate the learning of logic and arithmetic concepts in an engaging way.",
         image: "/projects/tapiocaria-front.png",
-        gallery: ["/projects/tapiocaria-front.png", "/projects/tapiocaria-front.png", "/projects/tapiocaria-front.png", "/projects/tapiocaria-front.png"],
+        gallery: ["/projects/tapiocaria-front.png", "/projects/tapiocaria-front/tapiocaria-front1.png", "/projects/tapiocaria-front/tapiocaria-front2.png", "/projects/tapiocaria-front/tapiocaria-front3.png", "/projects/tapiocaria-front/tapiocaria-front4.png"],
         role: "Frontend Developer",
         commits: "53",
         date: "2024",

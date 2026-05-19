@@ -1,3 +1,4 @@
+import { useState } from "react"; // 1. Importamos o useState
 import { useParams, useNavigate, Link } from "react-router-dom";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
@@ -6,6 +7,8 @@ import { projects } from "../data/projects";
 export default function Project() {
     const { projectId } = useParams();
     const navigate = useNavigate();
+
+    const [activeImage, setActiveImage] = useState<string | null>(null);
 
     const project = projects.find((p) => p.id === Number(projectId));
 
@@ -22,6 +25,8 @@ export default function Project() {
             </div>
         );
     }
+
+    const getImgUrl = (index: number) => project.gallery?.[index] || project.image;
 
     return (
         <div className="min-h-screen w-full bg-black flex flex-col font-sans">
@@ -43,22 +48,36 @@ export default function Project() {
                     </button>
                 </div>
 
-                {/* Grid de Imagens */}
                 <div className="grid grid-cols-4 grid-rows-2 gap-4 h-[300px] md:h-[500px] mb-12">
-                    <div className="col-span-1 bg-gray-800 rounded-2xl overflow-hidden hidden md:block">
-                        <img src={project.gallery?.[0] || project.image} className="w-full h-full object-cover opacity-80" />
+                    <div
+                        className="col-span-1 bg-gray-800 rounded-2xl overflow-hidden hidden md:block cursor-pointer"
+                        onClick={() => setActiveImage(getImgUrl(1))}
+                    >
+                        <img src={getImgUrl(1)} className="w-full h-full object-cover opacity-80 hover:opacity-100 transition-opacity" />
                     </div>
-                    <div className="col-span-4 md:col-span-2 row-span-2 bg-gray-700 rounded-3xl overflow-hidden border-4 border-gray-600">
-                        <img src={project.image} className="w-full h-full object-cover" />
+                    <div
+                        className="col-span-4 md:col-span-2 row-span-2 bg-gray-700 rounded-3xl overflow-hidden border-4 border-gray-600 cursor-pointer"
+                        onClick={() => setActiveImage(project.image)}
+                    >
+                        <img src={project.image} className="w-full h-full object-cover hover:scale-[1.02] transition-transform" />
                     </div>
-                    <div className="col-span-1 bg-gray-800 rounded-2xl overflow-hidden hidden md:block">
-                        <img src={project.gallery?.[1] || project.image} className="w-full h-full object-cover opacity-80" />
+                    <div
+                        className="col-span-1 bg-gray-800 rounded-2xl overflow-hidden hidden md:block cursor-pointer"
+                        onClick={() => setActiveImage(getImgUrl(2))}
+                    >
+                        <img src={getImgUrl(2)} className="w-full h-full object-cover opacity-80 hover:opacity-100 transition-opacity" />
                     </div>
-                    <div className="col-span-1 bg-gray-800 rounded-2xl overflow-hidden hidden md:block">
-                        <img src={project.gallery?.[2] || project.image} className="w-full h-full object-cover opacity-80" />
+                    <div
+                        className="col-span-1 bg-gray-800 rounded-2xl overflow-hidden hidden md:block cursor-pointer"
+                        onClick={() => setActiveImage(getImgUrl(3))}
+                    >
+                        <img src={getImgUrl(3)} className="w-full h-full object-cover opacity-80 hover:opacity-100 transition-opacity" />
                     </div>
-                    <div className="col-span-1 bg-gray-800 rounded-2xl overflow-hidden hidden md:block">
-                        <img src={project.gallery?.[3] || project.image} className="w-full h-full object-cover opacity-80" />
+                    <div
+                        className="col-span-1 bg-gray-800 rounded-2xl overflow-hidden hidden md:block cursor-pointer"
+                        onClick={() => setActiveImage(getImgUrl(4))}
+                    >
+                        <img src={getImgUrl(4)} className="w-full h-full object-cover opacity-80 hover:opacity-100 transition-opacity" />
                     </div>
                 </div>
 
@@ -115,6 +134,31 @@ export default function Project() {
             </div>
 
             <Footer />
+
+            {activeImage && (
+                <div
+                    className="fixed inset-0 z-50 flex flex-col bg-black/95 backdrop-blur-md transition-opacity cursor-zoom-out"
+                    onClick={() => setActiveImage(null)}
+                >
+                    <div className="w-full flex justify-end p-4 h-16 items-center shrink-0">
+                        <button
+                            className="text-white text-base font-mono hover:text-gray-300 transition-colors bg-neutral-900/80 border border-neutral-800 px-4 py-2 rounded-md z-50"
+                            onClick={() => setActiveImage(null)}
+                        >
+                            [ fechar_x ]
+                        </button>
+                    </div>
+
+                    <div className="flex-1 flex items-center justify-center p-4 min-h-0 w-full">
+                        <img
+                            src={activeImage}
+                            alt="Destaque do projeto"
+                            className="max-w-full max-h-full rounded-xl object-contain shadow-2xl border border-neutral-900 cursor-default"
+                            onClick={(e) => e.stopPropagation()}
+                        />
+                    </div>
+                </div>
+            )}
         </div>
     );
 }

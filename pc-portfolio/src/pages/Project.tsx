@@ -1,8 +1,9 @@
-import { useState } from "react"; // 1. Importamos o useState
+import { useState } from "react";
 import { useParams, useNavigate, Link } from "react-router-dom";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { projects } from "../data/projects";
+import { useGithubCommits } from "@/hooks/useGithubCommits";
 
 export default function Project() {
     const { projectId } = useParams();
@@ -11,6 +12,8 @@ export default function Project() {
     const [activeImage, setActiveImage] = useState<string | null>(null);
 
     const project = projects.find((p) => p.id === Number(projectId));
+
+    const totalCommits = useGithubCommits("paulo-campos-57", project?.repoName);
 
     if (!project) {
         return (
@@ -98,7 +101,7 @@ export default function Project() {
                         <div className="flex items-center justify-between group">
                             <div className="flex flex-col">
                                 <span className="text-white text-3xl font-bold italic">
-                                    {project.commits || "0"} commits
+                                    {totalCommits || "0"} commits
                                 </span>
                                 <span className="text-gray-400 text-xl font-mono">
                                     ./begin_date: {project.date || "2024"}

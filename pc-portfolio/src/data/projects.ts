@@ -12,7 +12,8 @@ export const projects = [
         commits: "53",
         date: "2024",
         stack: ["React", "TypeScript", "TailwindCSS"],
-        githubLink: "https://github.com/paulo-campos-57/Projeto-TCC-FrontEnd/tree/development"
+        githubLink: "https://github.com/paulo-campos-57/Projeto-TCC-FrontEnd/tree/development",
+        repoName: "Projeto-TCC-FrontEnd",
     },
     {
         id: 2,

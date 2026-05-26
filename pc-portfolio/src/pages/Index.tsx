@@ -58,6 +58,13 @@ export default function Index() {
       image: "projects/cloudia-back.png",
       link: "#",
     },
+    {
+      id: 4,
+      title: "Cattuccino Dashboard",
+      description: "Interactive dashboard for the visualization of the stats of a Cat Café",
+      image: "projects/cattuccino.jpeg",
+      link: "#",
+    }
   ];
 
   const containerVariants = {
@@ -187,7 +194,7 @@ export default function Index() {
                     </p>
 
                     <div className="mt-auto pt-4 text-blue-500 text-xs font-black tracking-widest uppercase opacity-0 group-hover:opacity-100 transition-opacity">
-                      Ver projeto _
+                      Visualize project _
                     </div>
                   </div>
                 </motion.div>

@@ -1,10 +1,15 @@
 import { useState, useEffect } from "react";
 
-export function useGithubCommits(owner: string, repo: string | undefined) {
-    const [commits, setCommits] = useState<number>(0);
+export function useGithubCommits(owner: string, repo: string | undefined): number | null {
+    const [commits, setCommits] = useState<number | null>(null);
 
     useEffect(() => {
-        if (!owner || !repo) return;
+        if (!owner || !repo) {
+            setCommits(0);
+            return;
+        }
+
+        setCommits(null);
 
         fetch(`https://api.github.com/repos/${owner}/${repo}/commits?per_page=1`)
             .then((response) => {
@@ -18,7 +23,10 @@ export function useGithubCommits(owner: string, repo: string | undefined) {
                     });
                 }
             })
-            .catch((err) => console.error("Erro ao buscar commits:", err));
+            .catch((err) => {
+                console.error("Erro ao buscar commits:", err);
+                setCommits(0);
+            });
     }, [owner, repo]);
 
     return commits;

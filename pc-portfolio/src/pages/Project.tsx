@@ -13,7 +13,9 @@ export default function Project() {
 
     const project = projects.find((p) => p.id === Number(projectId));
 
-    const totalCommits = useGithubCommits("paulo-campos-57", project?.repoName);
+    const repoOwner = project?.githubLink?.split("github.com/")[1]?.split("/")[0] || "paulo-campos-57";
+
+    const totalCommits = useGithubCommits(repoOwner, project?.repoName);
 
     if (!project) {
         return (
@@ -100,9 +102,16 @@ export default function Project() {
 
                         <div className="flex items-center justify-between group">
                             <div className="flex flex-col">
-                                <span className="text-white text-3xl font-bold italic">
-                                    {totalCommits || "0"} commits
-                                </span>
+                                {totalCommits === null ? (
+                                    <span className="text-gray-400 text-2xl font-bold italic animate-pulse">
+                                        ./loading_commits...
+                                    </span>
+                                ) : (
+                                    <span className="text-white text-3xl font-bold italic">
+                                        {totalCommits} commits
+                                    </span>
+                                )}
+
                                 <span className="text-gray-400 text-xl font-mono">
                                     ./begin_date: {project.date || "2024"}
                                 </span>

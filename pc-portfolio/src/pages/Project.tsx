@@ -4,10 +4,12 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { projects } from "../data/projects";
 import { useGithubCommits } from "@/hooks/useGithubCommits";
+import { useLanguage } from "@/context/LanguageContext";
 
 export default function Project() {
     const { projectId } = useParams();
     const navigate = useNavigate();
+    const { t } = useLanguage();
 
     const [activeImage, setActiveImage] = useState<string | null>(null);
 
@@ -20,12 +22,12 @@ export default function Project() {
     if (!project) {
         return (
             <div className="min-h-screen bg-gray-950 text-white flex flex-col items-center justify-center font-mono">
-                <p className="text-xl">./project_not_found</p>
+                <p className="text-xl">{t.projectNotFound}</p>
                 <button
                     className="mt-4 text-blue-500 hover:underline"
                     onClick={() => navigate("/")}
                 >
-                    [ return_home ]
+                    {t.projectReturnHome}
                 </button>
             </div>
         );
@@ -43,13 +45,13 @@ export default function Project() {
                         ./{project.title}
                     </h1>
                     <span className="text-gray-400 text-xl font-mono">
-                        ./at {project.enterprise || "Personal"}
+                        {t.projectAtEnterprise} {project.enterprise || "Personal"}
                     </span>
                     <button
                         className="mt-4 text-blue-500 hover:underline"
                         onClick={() => navigate("/")}
                     >
-                        [ return_home ]
+                        {t.projectReturnHome}
                     </button>
                 </div>
 
@@ -89,14 +91,14 @@ export default function Project() {
                 <div className="flex flex-col md:flex-row justify-between gap-12 mb-12">
                     <div className="flex-1">
                         <p className="text-gray-300 text-lg leading-relaxed text-justify">
-                            {project.fullDescription}
+                            {t.projects.find((p) => p.id === project.id)?.fullDescription || project.fullDescription}
                         </p>
                     </div>
 
                     <div className="flex flex-col gap-2 min-w-[250px] font-mono">
                         <div className="flex flex-col">
                             <span className="text-white text-3xl font-bold italic">
-                                . /role: <span className="font-normal not-italic">{project.role || "Developer"}</span>
+                                {t.projectRole} <span className="font-normal not-italic">{project.role || "Developer"}</span>
                             </span>
                         </div>
 
@@ -104,7 +106,7 @@ export default function Project() {
                             <div className="flex flex-col">
                                 {totalCommits === null ? (
                                     <span className="text-gray-400 text-2xl font-bold italic animate-pulse">
-                                        ./loading_commits...
+                                        {t.projectLoading}
                                     </span>
                                 ) : (
                                     <span className="text-white text-3xl font-bold italic">
@@ -113,7 +115,7 @@ export default function Project() {
                                 )}
 
                                 <span className="text-gray-400 text-xl font-mono">
-                                    ./begin_date: {project.date || "2024"}
+                                    {t.projectBeginDate} {project.date || "2024"}
                                 </span>
                             </div>
 
@@ -157,7 +159,7 @@ export default function Project() {
                             className="text-white text-base font-mono hover:text-gray-300 transition-colors bg-neutral-900/80 border border-neutral-800 px-4 py-2 rounded-md z-50"
                             onClick={() => setActiveImage(null)}
                         >
-                            [ fechar_x ]
+                            {t.projectCloseImage}
                         </button>
                     </div>
 

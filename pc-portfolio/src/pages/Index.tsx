@@ -9,11 +9,14 @@ import {
 } from "@/components/ui/carousel";
 import Footer from "@/components/Footer";
 import { Link } from "react-router-dom";
+import { useLanguage } from "@/context/LanguageContext";
 
 export default function Index() {
   const plugin = React.useRef(
     Autoplay({ delay: 2000, stopOnInteraction: false }),
   );
+
+  const { t } = useLanguage();
 
   const stack = [
     { id: 1, name: "React", logo: "/icons/react.svg" },
@@ -38,33 +41,23 @@ export default function Index() {
     {
       id: 1,
       title: "Tapiocaria - Frontend",
-      description:
-        "Jogo interativo que ensina conceitos matemáticos (Frontend).",
       image: "projects/tapiocaria-front.png",
-      link: "#",
     },
     {
       id: 2,
       title: "Tapiocaria - Backend",
-      description:
-        "Jogo interativo que ensina conceitos matemáticos (Backend).",
       image: "projects/tapiocaria-back.png",
-      link: "#",
     },
     {
       id: 3,
       title: "CloudIA - Backend",
-      description: "API de comunicação com o Gemini, focado e estudos de Cloud.",
       image: "projects/cloudia-back.png",
-      link: "#",
     },
     {
       id: 4,
       title: "Cattuccino Dashboard",
-      description: "Interactive dashboard for the visualization of the stats of a Cat Café",
       image: "projects/cattuccino.jpeg",
-      link: "#",
-    }
+    },
   ];
 
   const containerVariants = {
@@ -96,17 +89,17 @@ export default function Index() {
           className="flex flex-col items-center justify-center gap-6"
         >
           <div className="text-white text-6xl text-center leading-tight font-bold">
-            Turning <span className="relative inline-block px-2 ml-1">
+            {t.heroTurning} <span className="relative inline-block px-2 ml-1">
               <span className="relative z-10 text-black">code</span>
               <span className="absolute inset-0 bg-blue-500 -skew-x-6"></span>
-            </span> into reality
+            </span> {t.heroIntoReality}
           </div>
           <div className="flex flex-col items-center justify-center gap-1">
             <h1 className="text-white text-4xl text-center leading-tight font-bold">
               Paulo Campos
             </h1>
             <p className="text-gray-400 text-lg text-center font-semibold">
-              Full Stack Developer
+              {t.heroRole}
             </p>
           </div>
         </motion.div>
@@ -165,41 +158,43 @@ export default function Index() {
             variants={itemVariants}
             className="text-white text-3xl font-bold mb-12 border-l-4 border-blue-500 pl-4"
           >
-            ./projects
+            {t.sectionProjects}
           </motion.h2>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {projects.map((project) => (
-              <Link to={`/project/${project.id}`}>
-                <motion.div
-                  key={project.id}
-                  variants={itemVariants}
-                  whileHover={{ y: -10 }}
-                  className="group relative h-[450px] bg-gray-900 border border-gray-800 rounded-xl overflow-hidden shadow-xl cursor-pointer"
-                >
-                  <div className="h-3/5 w-full overflow-hidden bg-gray-800/50 flex items-center justify-center p-4">
-                    <img
-                      src={project.image}
-                      alt={project.title}
-                      className="max-w-full max-h-full object-contain transition-transform duration-500 group-hover:scale-105 opacity-90 group-hover:opacity-100"
-                    />
-                  </div>
-
-                  <div className="p-6 flex flex-col gap-2 h-2/5">
-                    <h3 className="text-white text-xl font-bold group-hover:text-blue-400 transition-colors">
-                      {project.title}
-                    </h3>
-                    <p className="text-gray-400 text-sm leading-relaxed line-clamp-3">
-                      {project.description}
-                    </p>
-
-                    <div className="mt-auto pt-4 text-blue-500 text-xs font-black tracking-widest uppercase opacity-0 group-hover:opacity-100 transition-opacity">
-                      Visualize project _
+            {projects.map((project) => {
+              const projectTranslation = t.projects.find((p) => p.id === project.id);
+              return (
+                <Link key={project.id} to={`/project/${project.id}`}>
+                  <motion.div
+                    variants={itemVariants}
+                    whileHover={{ y: -10 }}
+                    className="group relative h-[450px] bg-gray-900 border border-gray-800 rounded-xl overflow-hidden shadow-xl cursor-pointer"
+                  >
+                    <div className="h-3/5 w-full overflow-hidden bg-gray-800/50 flex items-center justify-center p-4">
+                      <img
+                        src={project.image}
+                        alt={project.title}
+                        className="max-w-full max-h-full object-contain transition-transform duration-500 group-hover:scale-105 opacity-90 group-hover:opacity-100"
+                      />
                     </div>
-                  </div>
-                </motion.div>
-              </Link>
-            ))}
+
+                    <div className="p-6 flex flex-col gap-2 h-2/5">
+                      <h3 className="text-white text-xl font-bold group-hover:text-blue-400 transition-colors">
+                        {project.title}
+                      </h3>
+                      <p className="text-gray-400 text-sm leading-relaxed line-clamp-3">
+                        {projectTranslation?.description}
+                      </p>
+
+                      <div className="mt-auto pt-4 text-blue-500 text-xs font-black tracking-widest uppercase opacity-0 group-hover:opacity-100 transition-opacity">
+                        {t.projectCardCTA}
+                      </div>
+                    </div>
+                  </motion.div>
+                </Link>
+              );
+            })}
           </div>
         </motion.div>
       </section>
@@ -222,7 +217,7 @@ export default function Index() {
             variants={itemVariants}
             className="text-white text-3xl font-bold mb-12 border-l-4 border-blue-500 pl-4"
           >
-            ./about
+            {t.sectionAbout}
           </motion.h2>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-start">
@@ -246,38 +241,30 @@ export default function Index() {
                   download
                   className="w-full bg-gray-900/80 hover:bg-gray-700 text-white py-3 rounded-b-2xl border-t border-gray-800 transition-colors flex items-center justify-center gap-2 text-sm font-semibold group/btn"
                 >
-                  Download my resume!
+                  {t.downloadResume}
                   <span className="text-blue-500 group-hover/btn:translate-y-1 transition-transform tracking-widest font-black">↓</span>
                 </a>
               </div>
             </motion.div>
 
             <motion.div variants={itemVariants} className="flex flex-col gap-6">
-              <p className="text-gray-300 text-lg leading-relaxed">
-                Hello! I'm{" "}
-                <span className="text-white font-bold">Paulo Campos</span>, a
-                fullstack developer focused on building robust and scalable
-                solutions. My journey is driven by the curiosity to understand
-                how things work under the hood.
-              </p>
+              <p
+                className="text-gray-300 text-lg leading-relaxed"
+                dangerouslySetInnerHTML={{ __html: t.aboutP1 }}
+              />
 
-              <p className="text-gray-400 leading-relaxed">
-                With experience in the{" "}
-                <span className="text-[#61DAFB]">React</span>,
-                <span className="text-[#3776AB]"> Python</span> and
-                <span className="text-[#339933]"> Node.js</span> ecosystems, I
-                always strive for a balance between clean code and an impeccable
-                user experience. When I'm not coding, I'm likely exploring new
-                technologies or improving my Linux setup.
-              </p>
+              <p
+                className="text-gray-400 leading-relaxed"
+                dangerouslySetInnerHTML={{ __html: t.aboutP2 }}
+              />
 
               <div className="flex flex-wrap gap-8 mt-4">
                 <div className="flex flex-col gap-1">
                   <span className="text-white font-bold text-2xl tracking-tight leading-none">
-                    Development <br /> Intern
+                    {t.aboutJobTitle.split(" ").slice(0, -1).join(" ")} <br /> {t.aboutJobTitle.split(" ").slice(-1)}
                   </span>
                   <span className="text-gray-500 text-xs uppercase tracking-[0.2em] font-medium">
-                    Magnum Tires
+                    {t.aboutJobCompany}
                   </span>
                 </div>
 
@@ -285,17 +272,17 @@ export default function Index() {
 
                 <div className="flex flex-col gap-1">
                   <span className="text-white font-bold text-2xl tracking-tight leading-none">
-                    Computer Science <br /> Student
+                    {t.aboutEduTitle.split(" ").slice(0, 2).join(" ")} <br /> {t.aboutEduTitle.split(" ").slice(2).join(" ")}
                   </span>
                   <span className="text-gray-500 text-xs uppercase tracking-[0.2em] font-medium">
-                    CESAR School
+                    {t.aboutEduSchool}
                   </span>
                 </div>
               </div>
 
               <div className="mt-8 pt-8 border-t border-gray-700/50">
                 <span className="text-gray-500 text-xs uppercase tracking-[0.2em] font-medium mb-4 block">
-                  Find me at:
+                  {t.aboutFindMeAt}
                 </span>
                 <div className="flex flex-wrap gap-6">
                   <a

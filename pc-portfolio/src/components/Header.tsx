@@ -2,23 +2,25 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
 import { useLocation, Link } from "react-router-dom";
+import { useLanguage } from "@/context/LanguageContext";
 
 export default function Header() {
   const [isOpen, setIsOpen] = useState(false);
   const location = useLocation();
+  const { language, toggleLanguage, t } = useLanguage();
 
   const isProjectPage = location.pathname.includes("/project");
 
   const navItems = isProjectPage
     ? [
-      { name: "./home", href: "/" },
-      { name: "./projects", href: "/#projects" },
-      { name: "./about", href: "/#about" },
+      { name: t.navHome, href: "/" },
+      { name: t.navProjects, href: "/#projects" },
+      { name: t.navAbout, href: "/#about" },
     ]
     : [
-      { name: "./home", href: "#home" },
-      { name: "./projects", href: "#projects" },
-      { name: "./about", href: "#about" },
+      { name: t.navHome, href: "#home" },
+      { name: t.navProjects, href: "#projects" },
+      { name: t.navAbout, href: "#about" },
     ];
 
   return (
@@ -60,8 +62,23 @@ export default function Header() {
       </nav>
 
       <div className="flex items-center gap-4">
-        <button className="border-2 border-white rounded-full px-4 py-1 text-sm font-bold hover:bg-white hover:text-black transition">
-          EN
+        <button
+          onClick={toggleLanguage}
+          className="relative border-2 border-white rounded-full px-4 py-1 text-sm font-bold overflow-hidden group transition-colors duration-300 hover:border-blue-400"
+          title={language === "en" ? "Switch to Portuguese" : "Mudar para Inglês"}
+        >
+          <AnimatePresence mode="wait">
+            <motion.span
+              key={language}
+              initial={{ opacity: 0, y: 8 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -8 }}
+              transition={{ duration: 0.18 }}
+              className="block group-hover:text-blue-400 transition-colors duration-300"
+            >
+              {language === "en" ? "EN" : "PT"}
+            </motion.span>
+          </AnimatePresence>
         </button>
 
         <button
@@ -103,6 +120,13 @@ export default function Header() {
                 </Link>
               );
             })}
+
+            <button
+              onClick={() => { toggleLanguage(); setIsOpen(false); }}
+              className="border-2 border-white rounded-full px-6 py-2 text-base font-bold hover:bg-white hover:text-black transition"
+            >
+              {language === "en" ? "EN 🇺🇸" : "PT 🇧🇷"}
+            </button>
           </motion.div>
         )}
       </AnimatePresence>

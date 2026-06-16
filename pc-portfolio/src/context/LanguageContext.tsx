@@ -10,6 +10,7 @@ interface Translations {
 
   // Home section - hero
   heroTurning: string;
+  heroCode: string;
   heroIntoReality: string;
   heroRole: string;
 
@@ -51,6 +52,7 @@ const en: Translations = {
   navAbout: "./about",
 
   heroTurning: "Turning",
+  heroCode: "code",
   heroIntoReality: "into reality",
   heroRole: "Full Stack Developer",
 
@@ -100,6 +102,18 @@ const en: Translations = {
       fullDescription:
         "A full-stack dashboard platform developed as a 5th-semester project at CESAR School for the startup Cattuccino. Built with a React frontend and a Python/Flask backend, the application provides business analysts and managers with data-driven insights into product financial performance and cross-channel digital marketing metrics. The entire ecosystem is fully containerized with Docker, leveraging Node.js dependencies and a MySQL database to ensure seamless deployment and reliable data management.",
     },
+    {
+      id: 5,
+      description: "Interface for a machine learning model aimed at preventing diabetes cases.",
+      fullDescription:
+        "Repository dedicated to the EndoAI project, from the Projects 6 course, in the 6th semester at CESAR School. The developed project is an interface for a machine learning model primarily aimed at preventing diabetes cases, always encouraging the user to seek a diagnosis from a healthcare professional.",
+    },
+    {
+      id: 6,
+      description: "Full-stack real-time multiplayer arcade game using React, Express, and Socket.io.",
+      fullDescription:
+        "Gravity Pong is a full-stack, real-time arcade game featuring both single-player and multiplayer modes. The frontend is built with React, TypeScript, Vite, and TailwindCSS, including CRT scanline effects for a retro feel. The backend is an Express API with a custom 60Hz game engine using Socket.IO for real-time bidirectional communication, incorporating gravitational physics and bot AI. The project is fully tested with Jest.",
+    },
   ],
 };
 
@@ -109,6 +123,7 @@ const pt: Translations = {
   navAbout: "./sobre",
 
   heroTurning: "Transformando",
+  heroCode: "código",
   heroIntoReality: "em realidade",
   heroRole: "Desenvolvedor Full Stack",
 
@@ -157,6 +172,18 @@ const pt: Translations = {
       description: "Dashboard interativo para visualização das estatísticas de um Cat Café.",
       fullDescription:
         "Uma plataforma de dashboard full-stack desenvolvida como projeto do 5º semestre na CESAR School para a startup Cattuccino. Construída com frontend em React e backend em Python/Flask, a aplicação fornece a analistas de negócios e gerentes insights orientados a dados sobre o desempenho financeiro de produtos e métricas de marketing digital multicanal. Todo o ecossistema é totalmente conteinerizado com Docker, utiliza dependências Node.js e banco de dados MySQL para garantir implantação contínua e gerenciamento confiável de dados.",
+    },
+    {
+      id: 5,
+      description: "Interface para um modelo de machine learning voltado para a prevenção de casos de diabetes.",
+      fullDescription:
+        "Repositório destinado ao projeto EndoAI, da disciplina de Projetos 6, do 6° período no CESAR School. O projeto desenvolvido é uma interface para um modelo de machine learning que tem como principal diretriz a prevenção de casos de diabetes, sempre incentivando o usuário a buscar o diagnóstico de um profissional da saúde.",
+    },
+    {
+      id: 6,
+      description: "Jogo arcade full-stack multiplayer em tempo real usando React, Express e Socket.io.",
+      fullDescription:
+        "Gravity Pong é um jogo arcade full-stack em tempo real que possui modos single-player e multiplayer. O frontend foi construído com React, TypeScript, Vite e TailwindCSS, incluindo efeitos de tela CRT para uma estética retrô. O backend é uma API Express com um motor de jogo customizado a 60Hz utilizando Socket.IO para comunicação bidirecional em tempo real, incorporando física gravitacional e IA para o bot. O projeto possui testes automatizados com Jest.",
     },
   ],
 };

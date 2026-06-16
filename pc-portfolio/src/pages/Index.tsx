@@ -58,6 +58,16 @@ export default function Index() {
       title: "Cattuccino Dashboard",
       image: "projects/cattuccino.jpeg",
     },
+    {
+      id: 5,
+      title: "EndoAI",
+      image: "projects/endoAI.png",
+    },
+    {
+      id: 6,
+      title: "Gravity Pong",
+      image: "projects/gravity-defender.png",
+    },
   ];
 
   const containerVariants = {
@@ -88,9 +98,9 @@ export default function Index() {
           transition={{ duration: 0.5 }}
           className="flex flex-col items-center justify-center gap-6"
         >
-          <div className="text-white text-6xl text-center leading-tight font-bold">
+          <div className="text-white text-4xl md:text-5xl lg:text-6xl text-center leading-tight font-bold">
             {t.heroTurning} <span className="relative inline-block px-2 ml-1">
-              <span className="relative z-10 text-black">code</span>
+              <span className="relative z-10 text-black">{t.heroCode}</span>
               <span className="absolute inset-0 bg-blue-500 -skew-x-6"></span>
             </span> {t.heroIntoReality}
           </div>
@@ -169,9 +179,9 @@ export default function Index() {
                   <motion.div
                     variants={itemVariants}
                     whileHover={{ y: -10 }}
-                    className="group relative h-[450px] bg-gray-900 border border-gray-800 rounded-xl overflow-hidden shadow-xl cursor-pointer"
+                    className="group relative md:h-[450px] bg-gray-900 border border-gray-800 rounded-xl overflow-hidden shadow-xl cursor-pointer flex flex-col"
                   >
-                    <div className="h-3/5 w-full overflow-hidden bg-gray-800/50 flex items-center justify-center p-4">
+                    <div className="h-56 md:h-3/5 w-full overflow-hidden bg-gray-800/50 flex items-center justify-center p-4 flex-shrink-0">
                       <img
                         src={project.image}
                         alt={project.title}
@@ -179,11 +189,11 @@ export default function Index() {
                       />
                     </div>
 
-                    <div className="p-6 flex flex-col gap-2 h-2/5">
+                    <div className="p-6 flex flex-col gap-2 flex-1">
                       <h3 className="text-white text-xl font-bold group-hover:text-blue-400 transition-colors">
                         {project.title}
                       </h3>
-                      <p className="text-gray-400 text-sm leading-relaxed line-clamp-3">
+                      <p className="text-gray-400 text-sm leading-relaxed md:line-clamp-3">
                         {projectTranslation?.description}
                       </p>
 

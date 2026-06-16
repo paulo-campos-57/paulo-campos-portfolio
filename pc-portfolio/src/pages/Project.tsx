@@ -55,37 +55,63 @@ export default function Project() {
                     </button>
                 </div>
 
-                <div className="grid grid-cols-4 grid-rows-2 gap-4 h-[300px] md:h-[500px] mb-12">
+                {/* Desktop gallery grid */}
+                <div className="hidden md:grid grid-cols-4 grid-rows-2 gap-4 h-[500px] mb-12">
                     <div
-                        className="col-span-1 bg-gray-800 rounded-2xl overflow-hidden hidden md:block cursor-pointer"
+                        className="col-span-1 bg-gray-800 rounded-2xl overflow-hidden cursor-pointer"
                         onClick={() => setActiveImage(getImgUrl(1))}
                     >
                         <img src={getImgUrl(1)} className="w-full h-full object-cover opacity-80 hover:opacity-100 transition-opacity" />
                     </div>
                     <div
-                        className="col-span-4 md:col-span-2 row-span-2 bg-gray-700 rounded-3xl overflow-hidden border-4 border-gray-600 cursor-pointer"
+                        className="col-span-2 row-span-2 bg-gray-700 rounded-3xl overflow-hidden border-4 border-gray-600 cursor-pointer"
                         onClick={() => setActiveImage(project.image)}
                     >
                         <img src={project.image} className="w-full h-full object-cover hover:scale-[1.02] transition-transform" />
                     </div>
                     <div
-                        className="col-span-1 bg-gray-800 rounded-2xl overflow-hidden hidden md:block cursor-pointer"
+                        className="col-span-1 bg-gray-800 rounded-2xl overflow-hidden cursor-pointer"
                         onClick={() => setActiveImage(getImgUrl(2))}
                     >
                         <img src={getImgUrl(2)} className="w-full h-full object-cover opacity-80 hover:opacity-100 transition-opacity" />
                     </div>
                     <div
-                        className="col-span-1 bg-gray-800 rounded-2xl overflow-hidden hidden md:block cursor-pointer"
+                        className="col-span-1 bg-gray-800 rounded-2xl overflow-hidden cursor-pointer"
                         onClick={() => setActiveImage(getImgUrl(3))}
                     >
                         <img src={getImgUrl(3)} className="w-full h-full object-cover opacity-80 hover:opacity-100 transition-opacity" />
                     </div>
                     <div
-                        className="col-span-1 bg-gray-800 rounded-2xl overflow-hidden hidden md:block cursor-pointer"
+                        className="col-span-1 bg-gray-800 rounded-2xl overflow-hidden cursor-pointer"
                         onClick={() => setActiveImage(getImgUrl(4))}
                     >
                         <img src={getImgUrl(4)} className="w-full h-full object-cover opacity-80 hover:opacity-100 transition-opacity" />
                     </div>
+                </div>
+
+                {/* Mobile gallery */}
+                <div className="md:hidden mb-8 flex flex-col gap-3">
+                    {/* Main image */}
+                    <div
+                        className="w-full rounded-2xl overflow-hidden border-2 border-gray-600 cursor-pointer"
+                        onClick={() => setActiveImage(project.image)}
+                    >
+                        <img src={project.image} className="w-full object-cover" />
+                    </div>
+                    {/* Thumbnails horizontal scroll */}
+                    {project.gallery && project.gallery.length > 1 && (
+                        <div className="flex gap-3 overflow-x-auto pb-2 scrollbar-hide">
+                            {project.gallery.slice(1).map((img, i) => (
+                                <div
+                                    key={i}
+                                    className="flex-shrink-0 w-36 h-24 bg-gray-800 rounded-xl overflow-hidden cursor-pointer border border-gray-700"
+                                    onClick={() => setActiveImage(img)}
+                                >
+                                    <img src={img} className="w-full h-full object-cover opacity-80 hover:opacity-100 transition-opacity" />
+                                </div>
+                            ))}
+                        </div>
+                    )}
                 </div>
 
                 <div className="flex flex-col md:flex-row justify-between gap-12 mb-12">

@@ -36,12 +36,12 @@ export const projects = [
         title: "CloudIA - Backend",
         enterprise: "CESAR School",
         description: "Communication API with Google Gemini, focused on Cloud study",
-        image: "/projects/cloudia-backend.png",
-        gallery: ["/projects/cloudia-backend.png", "/projects/cloudia-backend/cloudia-backend1.png", "/projects/cloudia-backend/cloudia-backend2.png", "/projects/cloudia-backend/cloudia-backend3.png", "/projects/cloudia-backend/cloudia-backend4.png"],
+        image: "/projects/cloudia-back.png",
+        gallery: ["/projects/cloudia-back.png", "/projects/cloudia-backend/cloudia-backend2.png", "/projects/cloudia-backend/cloudia-backend3.png", "/projects/cloudia-backend/cloudia-backend4.png", "/projects/cloudia-backend/cloudia-backend5.png"],
         role: "Backend Developer",
         commits: "85",
         date: "2024",
-        stack: ["NodeJs", "Docker", "express", "Github Actions"],
+        stack: ["Node.js", "Docker", "express", "Github Actions"],
         githubLink: "https://github.com/paulo-campos-57/CloudIA",
         repoName: "CloudIA"
     },
@@ -61,4 +61,39 @@ export const projects = [
         githubLink: "https://github.com/MatheusGom/Cattuccino_P5",
         repoName: "Cattuccino_P5"
     },
+    {
+        id: 5,
+        title: "EndoAI",
+        enterprise: "CESAR School",
+        description: "Interface for a machine learning model aimed at preventing diabetes cases",
+        fullDescription: "Repository dedicated to the EndoAI project, from the Projects 6 course, in the 6th semester at CESAR School. The developed project is an interface for a machine learning model primarily aimed at preventing diabetes cases, always encouraging the user to seek a diagnosis from a healthcare professional.",
+        image: "/projects/endoAI.png",
+        gallery: ["/projects/endoAI.png", "/projects/endoAI/endoAI1.png", "/projects/endoAI/endoAI2.png", "/projects/endoAI/endoAI3.png", "/projects/endoAI/endoAI4.png"],
+        role: "FullStack Developer",
+        commits: "60",
+        date: "2024",
+        stack: ["React", "Node.js", "Python", "Flask"],
+        githubLink: "https://github.com/paulo-campos-57/EndoAI",
+        repoName: "EndoAI"
+    },
+    {
+        id: 6,
+        title: "Gravity Defender",
+        enterprise: "CESAR School",
+        description: "Full-stack real-time multiplayer arcade game using React, Express, and Socket.io.",
+        fullDescription: "Gravity Defender is a full-stack, real-time arcade game featuring both single-player and multiplayer modes. The frontend is built with React, TypeScript, Vite, and TailwindCSS, including CRT scanline effects for a retro feel. The backend is an Express API with a custom 60Hz game engine using Socket.IO for real-time bidirectional communication, incorporating gravitational physics and bot AI. The project is fully tested with Jest.",
+        image: "/projects/gravity-defender.png",
+        gallery: [
+            "/projects/gravity-defender/gravity-defender1.png",
+            "/projects/gravity-defender/gravity-defender2.png",
+            "/projects/gravity-defender/gravity-defender3.png",
+            "/projects/gravity-defender/gravity-defender4.png",
+        ],
+        role: "FullStack Developer",
+        commits: "40",
+        date: "2024",
+        stack: ["React", "TypeScript", "Vite", "TailwindCSS", "Node.js", "Express", "Socket.io", "Jest"],
+        githubLink: "https://github.com/paulo-campos-57/gravity-pong-frontend",
+        repoName: "gravity-pong-frontend"
+    }
 ];
